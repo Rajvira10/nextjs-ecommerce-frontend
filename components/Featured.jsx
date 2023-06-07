@@ -2,6 +2,8 @@ import React from "react";
 import Center from "./Center";
 import styled from "styled-components";
 import Button from "./Button";
+import ButtonLink from "./ButtonLink";
+import Link from "next/link";
 
 const Bg = styled.div`
   background-color: #222;
@@ -21,7 +23,7 @@ const Desc = styled.p`
 
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
   img {
     max-width: 100%;
@@ -39,25 +41,21 @@ const ButtonsWrapper = styled.div`
   margin-top: 25px;
 `;
 
-const Featured = () => {
+const Featured = ({ product }) => {
   return (
     <Bg>
       <Center>
         <ColumnsWrapper>
           <Column>
             <div>
-              <Title>Pro anywhere</Title>
-              <Desc>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Cupiditate expedita iste aspernatur et maxime labore, voluptatem
-                aperiam cum, maiores earum facere nobis unde fugiat excepturi
-                natus dolorum assumenda, quae veniam perspiciatis officia dolor.
-                Veniam voluptatibus temporibus nesciunt reiciendis explicabo
-              </Desc>
+              <Title>{product.title}</Title>
+              <Desc>{product.description}</Desc>
               <ButtonsWrapper>
-                <Button outline white>
-                  Read More
-                </Button>
+                <Link href={"/products/" + product._id}>
+                  <Button outline={1} white={1}>
+                    Read More
+                  </Button>
+                </Link>
                 <Button primary>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
