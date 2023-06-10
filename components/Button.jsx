@@ -30,10 +30,20 @@ const StyledButton = styled.button`
 
   ${(props) =>
     props.primary &&
+    !props.outline &&
     css`
       background-color: #5542f6;
       border: 1px solid #5542f6;
       color: #fff;
+    `}
+
+    ${(props) =>
+    props.primary &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      border: 1px solid #5542f6;
+      color: #5542f6;
     `}
 
   ${(props) =>
