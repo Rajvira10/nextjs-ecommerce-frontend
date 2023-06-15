@@ -78,8 +78,10 @@ const CartPage = () => {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
       });
+    } else {
+      setProducts([]);
     }
-  });
+  }, [cartProducts]);
   return (
     <>
       <Header />
@@ -146,47 +148,60 @@ const CartPage = () => {
             {!!cartProducts?.length && (
               <Box>
                 <h2>Order Information</h2>
-                <Input
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <Input
-                  type="text"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <CityHolder>
+                <form method="post" action="/api/checkout">
                   <Input
                     type="text"
-                    placeholder="City"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Name"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                   <Input
                     type="text"
-                    placeholder="Postal Code"
-                    value={postalCode}
-                    onChange={(e) => setPostalCode(e.target.value)}
+                    placeholder="Email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                </CityHolder>
-                <Input
-                  type="text"
-                  placeholder="Street Address"
-                  value={streetAddress}
-                  onChange={(e) => setStreetAddress(e.target.value)}
-                />
-                <Input
-                  type="text"
-                  placeholder="Country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                />
-                <Button block primary>
-                  Continue to payment
-                </Button>
+                  <CityHolder>
+                    <Input
+                      type="text"
+                      placeholder="City"
+                      name="city"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Postal Code"
+                      name="postalCode"
+                      value={postalCode}
+                      onChange={(e) => setPostalCode(e.target.value)}
+                    />
+                  </CityHolder>
+                  <Input
+                    type="text"
+                    placeholder="Street Address"
+                    name="streetAddress"
+                    value={streetAddress}
+                    onChange={(e) => setStreetAddress(e.target.value)}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Country"
+                    name="country"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  />
+                  <input
+                    type="hidden"
+                    name="products"
+                    value={cartProducts.join(",")}
+                  />
+                  <Button block primary type="submit">
+                    Continue to payment
+                  </Button>
+                </form>
               </Box>
             )}
           </ColumnsWrapper>
