@@ -38,8 +38,8 @@ const StyledButton = styled.button`
     props.primary &&
     !props.outline &&
     css`
-      background-color: #5542f6;
-      border: 1px solid #5542f6;
+      background-color: #222;
+      border: 1px solid #222;
       color: #fff;
     `}
 

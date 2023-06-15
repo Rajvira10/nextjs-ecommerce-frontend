@@ -1,7 +1,16 @@
 import React from "react";
+import styled from "styled-components";
 
-const Input = () => {
-  return <div>Input</div>;
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const Input = (props) => {
+  return <StyledInput {...props} />;
 };
 
 export default Input;
